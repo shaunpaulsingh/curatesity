@@ -7,5 +7,5 @@
 <p>
 Thank you for checking this project out.<br>
 We are just getting started.<br><br>
-Project is accessible at https://www.curatesity.com/
+Project is accessible at http://www.curatesity.com/
 </p>
