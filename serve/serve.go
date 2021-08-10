@@ -1,7 +1,9 @@
 package serve
 
 import (
+	"curatesity/htdocs/sites"
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
@@ -9,7 +11,13 @@ import (
 	"github.com/gorilla/mux"
 )
 
+var sitesHeld sites.Sites
+
+var funcs = template.FuncMap{"get": sitesHeld.GetSite}
+
 func Init() {
+	sitesHeld.Init()
+
 	r := mux.NewRouter()
 
 	fs := http.FileServer(http.Dir("htdocs/css/"))
@@ -28,5 +36,10 @@ func Init() {
 }
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "htdocs/index.gohtml")
+
+	t := template.Must(template.New("index.gohtml").Funcs(funcs).ParseFiles("htdocs/index.gohtml"))
+	err := t.Execute(w, sitesHeld)
+	if err != nil {
+		panic(err)
+	}
 }
