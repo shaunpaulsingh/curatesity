@@ -1,4 +1,4 @@
-package curatesity
+package main
 
 import "curatesity/serve"
 
