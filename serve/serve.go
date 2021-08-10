@@ -1,6 +1,7 @@
 package serve
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -19,7 +20,11 @@ func Init() {
 	r.HandleFunc("/", HomeHandler)
 
 	port := os.Getenv("PORT")
-	log.Fatal(http.ListenAndServe(port, r))
+	if port == "" {
+		port = "80"
+	}
+
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), r))
 }
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
