@@ -6,6 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- script charset="utf-8" src="js/app.js"></script -->
     <link rel="stylesheet" href="css/style.css" />
+
+    <script async defer type="text/javascript"
+    src="https://sdk.audienceplay.com/audienceplay.js">
+    </script>
+
+    <script type='text/javascript'>
+    window.onload = function(e)
+    {
+    audiencePlay.set("acp15ghuzkw7ks5y0268");
+    audiencePlay.start("Users");
+    audiencePlay.end();
+    audiencePlay.send();
+    }
+    </script>
 </head>
 <body>
   <div class="container">
